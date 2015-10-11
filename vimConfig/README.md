@@ -1,7 +1,7 @@
 # vim 配置
 
 ------
-* `vim插件采用vim bundle(vundle)插件管理器管理，将本配置clone到~/目录下，然后新建.vim/bundle文件夹，打开vim 采用bundle命令进行插件安装就可以使用了。`
+ vim插件采用vim bundle(vundle)插件管理器管理，将本配置clone到~/目录下，然后新建.vim/bundle文件夹，打开vim 采用bundle命令进行插件安装就可以使用了。
 
 #### vundle命令
 * :BundleList -列举出列表中(.vimrc中)配置的所有插件
