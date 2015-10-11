@@ -1,0 +1,356 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle Configuration Begin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set nocompatible
+filetype off
+
+" get Vundle.vim from github first
+"git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+" Solarized 配色
+Plugin 'altercation/vim-colors-solarized'
+
+" tag 高亮
+Plugin 'vim-scripts/TagHighlight'
+
+" 配合 ctags
+Plugin 'vim-scripts/taglist.vim'
+
+" Doxygen注释
+Plugin 'vim-scripts/DoxygenToolkit.vim'
+
+" Python 自动补全
+Plugin 'davidhalter/jedi-vim'
+
+" 状态栏
+Plugin 'bling/vim-airline'
+
+" 注释
+Plugin 'scrooloose/nerdcommenter'
+
+" golang vim-go
+Plugin 'fatih/vim-go'
+
+" tagbar 与 gotags  配合使用
+"Plugin 'majutsushi/tagbar'
+
+" neocomplete 实时提示-golang
+Plugin 'shougo/neocomplete.vim'
+
+call vundle#end()
+
+filetype plugin indent on
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle Configuration End
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Configuration Begin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds' : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin' : 'gotags',
+	\ 'ctagsargs': '-sort -silent'
+\ }
+
+nmap <F8> :TagbarToggle <CR>
+
+"启动vim时自动开启实时补全功能
+let g:neocomplete#enable_at_startup = 1 
+
+" Display Begin
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 字体
+set guifont=Consolas:11
+
+" 开启 xterm 256 色
+set t_Co=256
+
+" 开启语法高亮
+syntax on
+
+" 行号
+set number
+
+" 背景
+set background=dark
+
+" 突出显示当前行
+set cursorline              
+
+" 打开状态栏标尺
+set ruler 
+
+" 搜索高亮
+set hlsearch
+
+" 帮助文档
+set helplang=cn
+
+"
+" Display End
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+"
+" Tab & Indent Begin
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Tab键的宽度
+set tabstop=4
+
+" 统一缩进为4
+set softtabstop=4
+set shiftwidth=4
+
+" 不要用空格代替制表符
+set noexpandtab
+
+" 在行和段开始处使用制表符
+set smarttab
+
+" 自动缩进
+set cindent
+
+"
+" Tab & Indent End
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" 增量搜索
+set incsearch
+
+" 搜索忽略大小写
+set ignorecase
+
+" 历史记录数
+set history=1000
+
+" 修正退格键
+set backspace=indent,eol,start
+
+
+" 退出提示
+set confirm
+
+" 去掉输入错误的提示声音
+set noeb
+
+" 编码
+set encoding=utf-8
+set enc=utf-8
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+
+" 括号匹配
+set showmatch
+
+" 匹配时间(单位1/10秒)
+set matchtime=1
+
+" 完成提示选项
+set completeopt=preview,menu 
+
+" 正则表达式，除了 $ . * ^ 之外其他元字符都要加反斜杠 
+set magic
+
+" 设置CTags
+set tags=./tags,tags
+
+" 显示命令
+set showcmd
+
+"共享剪贴板  
+set clipboard+=unnamed 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Configuration End
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline Configuration Begin 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 总是显示状态栏
+set laststatus=2
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '>'
+let g:airline_left_sep = '>'
+let g:airline_right_sep = '<'
+let g:airline_right_sep = '<'
+let g:airline_symbols.linenr = '|'
+let g:airline_symbols.branch = '$'
+let g:airline_symbols.paste = 'p'
+let g:airline_symbols.whitespace = '='
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline Configuration End 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Solarized Configuration Begin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+syntax enable
+let g:solarized_termcolors=256
+"colorscheme solarized
+colorscheme peachpuff
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Solarized Configuration End
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Taglist Configuration Begin 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 按照名称排序
+let Tlist_Sort_Type = "name"
+
+" 在右侧显示窗口
+let Tlist_Use_Right_Window = 1
+
+" 压缩方式
+let Tlist_Compart_Format = 1
+
+" 如果只有一个buffer，kill窗口也kill掉buffer
+let Tlist_Exist_OnlyWindow = 1
+
+" 不要关闭其他文件的tags
+let Tlist_File_Fold_Auto_Close = 0
+
+" 不要显示折叠树
+let Tlist_Enable_Fold_Column = 0
+
+let Tlist_Show_menu = 1
+
+" 0为同时显示多个文件函数列表,1则只显示当前文件函数列表
+let Tlist_Show_one_File = 1
+
+" 如果taglist是最后一个窗口，则退出vim
+let Tlist_Exit_OnlyWindow = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Taglist Configuration End
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NerdCommenter Configuration Begin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"默认情况下 <leader> = \
+
+"<leader>cc			注释当前行
+"<leader>cn			Nested注释
+"<leader>c<space>	切换选定代码行注释
+"<leader>cu			取消注释
+"<leader>ca			在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
+"<leader>cA			在当前行尾添加注释符，并进入Insert模式
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NerdCommenter Configuration End
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" DoxygenToolkit Configuration Begin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:DoxygenToolkit_authorName="Hong Li, leehongitrd@163.com"
+let g:DoxygenToolkit_versionString="1.0.0"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" DoxygenToolkit Configuration End
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 文件头注释设置 Begin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"map <F12> :call TitleDet()<cr>'s 这个写法是错误滴,E20: Mark not set
+map <F12> :call TitleDet()<cr>
+function AddTitle()
+	call append(0,"/**")
+	call append(1,"*     File: ".expand("%:t"))
+	call append(2,"*	 Brief: ")
+	call append(3,"*	 Descr: ")
+	call append(4,"*")
+	call append(5,"*   Author: Hong Li, leehongitrd@163.com")
+	call append(6,"*  Created: ".strftime("%Y-%m-%d %X"))
+	call append(7,"* Modified: ".strftime("%Y-%m-%d %X"))
+	call append(8,"**/")
+	call append(9,"")
+	echohl WarningMsg |echo "Successful in adding the copyright."|echohl None
+endfunction
+
+" 更新最近修改的时间和文件名
+function UpdateTitle()
+	normal m'
+	"execute '/* *File:/s@:.*$@\=":\t\t".expand("%:t")@'
+	execute '/* *Modified:/s@:.*$@\=strftime(":\t%Y-%m-%d %X")@'
+	normal "
+	normal mk
+	execute '/* *File:/s@:.*$@\=":\t\t".expand("%:t")@'
+	"execute '/* *Modified:/s@:.*$@\=strftime(":\t%Y-%m-%d %X")@'
+	execute "noh"
+	normal 'k
+	echohl WarningMsg | echo "Successful in updating the copy right."| echohl None
+endfunction
+
+function TitleDet()
+	let n=1
+	while n < 10
+		let line = getline(n)
+		if line =~ '^\*\s*\S*Modified:\S*.*$'
+			call UpdateTitle()
+			return
+		endif
+		let n=n+1
+	endwhile
+	call AddTitle()
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 文件头注释设置 End
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
