@@ -1,6 +1,5 @@
-# chrome 配置
+## chrome 配置
 
-------
 chrome浏览器默认的白色背景对经常需要看浏览器的人来讲太不友好了。好在chrome浏览器有一个自定义背景色的插件Stylish!
 
 #### 安装Stylish插件
