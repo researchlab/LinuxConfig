@@ -15,10 +15,17 @@
 #### vim主要配置插件有
 * tag
 * ctags
-* Doxygen注释
+* Doxygen 注释
 * Python 自动补全
-* 状态栏
+* airline 状态栏
 * nerdcommenter注释
 * golang vim-go
+* tagbar 大纲式导览 - F8 触发
 * nerdcommenter 实时提示 需要vim支持lua
 * 支持自定义头文件注释
+* gocode golang代码自动补全
+* 代码排版Tabular - :Tabular /= 表示等号对齐 
+* markdown语法高亮
+* markdown preview 实时预览
+* NERDTree 目录 - Ctrl + n 触发
+* NERDTree-git-plugin

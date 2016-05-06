@@ -6,8 +6,7 @@ set nocompatible
 filetype off
 
 " get Vundle.vim from github first
-"git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" sudo yum install ctags cscope
+"git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -43,12 +42,39 @@ Plugin 'fatih/vim-go'
 " neocomplete 实时提示-golang
 Plugin 'shougo/neocomplete.vim'
 
+" gocode 代码自动补全功能
+Plugin 'Blackrush/vim-gocode'
+
+" 代码排版Tabular
+Plugin 'godlygeek/tabular'
+
+" markdown 
+Plugin 'plasticboy/vim-markdown'
+
+" markdown preview"
+Plugin 'iamcco/markdown-preview.vim'
+
+" NERDTree 
+Plugin 'scrooloose/nerdtree'
+
+" NERDTree-git-plugin 
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
 call vundle#end()
 
 filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle Configuration End
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python format Configuration Begin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python format Configuration End
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -88,6 +114,11 @@ nmap <F8> :TagbarToggle <CR>
 "启动vim时自动开启实时补全功能
 let g:neocomplete#enable_at_startup = 1 
 
+" 关闭markdown 折叠功能
+let g:vim_markdown_folding_disabled = 1
+
+" tab 2 space 
+set ts=2
 " Display Begin
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -118,9 +149,55 @@ set hlsearch
 " 帮助文档
 set helplang=cn
 
+" Tabular maping
+map <s-=> Tab/=
 "
 " Display End
 """""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"
+" NERDTree Start 
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 当单独打开vim时 自动打开 NERDTree 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" 当只有NERDTree窗口时 自动关闭vim 
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" NERDTree 快捷键 <C-n> 表示 Ctrl + n 
+map <C-n> :NERDTreeToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree End
+"
+
+
+"
+" NERDTree-git-plugin Start 
+"""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree-git-plugin End
+"
+
+"
+" MarkdownPreview Start
+"""""""""""""""""""""""""""""""""""""""""""""""""
+let g:mkdp_path_to_firefox = "firefox"
 
 "
 " Tab & Indent Begin
@@ -146,7 +223,6 @@ set cindent
 " Tab & Indent End
 """""""""""""""""""""""""""""""""""""""""""""""""
 
-
 " 增量搜索
 set incsearch
 
@@ -158,7 +234,6 @@ set history=1000
 
 " 修正退格键
 set backspace=indent,eol,start
-
 
 " 退出提示
 set confirm
