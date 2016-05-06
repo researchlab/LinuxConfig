@@ -1,6 +1,5 @@
 # vim 配置
 
-------
  vim插件采用vim bundle(vundle)插件管理器管理，将本配置clone到~/目录下，然后新建.vim/bundle文件夹，打开vim 采用bundle命令进行插件安装就可以使用了。
 
 #### vundle命令
@@ -20,12 +19,12 @@
 * airline 状态栏
 * nerdcommenter注释
 * golang vim-go
-* tagbar 大纲式导览 - F8 触发
+* tagbar 大纲式导览 - `F8` 触发
 * nerdcommenter 实时提示 需要vim支持lua
-* 支持自定义头文件注释
+* 支持自定义头文件注释 - `F12` 触发
 * gocode golang代码自动补全
-* 代码排版Tabular - :Tabular /= 表示等号对齐 
+* 代码排版Tabular - `:Tabular /=` 表示等号对齐 
 * markdown语法高亮
 * markdown preview 实时预览
-* NERDTree 目录 - Ctrl + n 触发
+* NERDTree 目录 - `Ctrl + n` 触发
 * NERDTree-git-plugin
