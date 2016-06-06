@@ -74,6 +74,7 @@ chrome浏览器默认的白色背景对经常需要看浏览器的人来讲太�
 <center>![图02](./images/jsxz02.png)</center>
 
 
+<a id="6_onetab浏览器多标签记录器"/>
 ##6 onetab浏览器多标签记录器
 
 用onetab插件可以解放95%的chrome浏览器内存占用。
@@ -94,6 +95,8 @@ Chrome 的特点之一，就是为每个标签页单开一个进程，减少崩�
 
 <center>![one outline](./images/tabs.png)</center>
 
+
+<a id="7_postmanhttp请求调试神器"/>
 ##7 postmanhttp请求调试神器
 
 在我们平时开发中，特别是需要与接口打交道时，无论是写接口还是用接口，拿到接口后肯定都得提前测试一下，这样的话就非常需要有一个比较给力的Http请求模拟工具，现在流行的这种工具也挺多的，像火狐浏览器插件-RESTClient，Chrome浏览器插件-Postman等等。
@@ -102,6 +105,8 @@ Postman是一种网页调试与发送网页http请求的chrome插件。我们可
 
 <center>![postman](./images/postman.png)</center>
 
+
+<a id="8_翻墙神器"/>
 ##8 翻墙神器
 
 <center>![proxy](./images/proxy.png)</center>
