@@ -28,3 +28,4 @@
 * markdown preview 实时预览
 * NERDTree 目录 - `Ctrl + n` 触发
 * NERDTree-git-plugin
+* emmet html自动补全(前身为zencoding)
