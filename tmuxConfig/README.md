@@ -10,21 +10,21 @@
 | server  | 服务器。输入tmux命令时就开启了一个服务器。 |
 | session | 会话。一个服务器可以包含多个会话。         |
 | window  | 窗口。一个会话可以包含多个窗口。           |
-| pane    | 面板。一个窗口可以包含多个面板。           |
+| panel    | 面板。一个窗口可以包含多个面板。           |
 
-> 透过上述表格说明可知，tmux使用`三层`模型(session/window/pane)来支持多窗口多终端复用。
+> 透过上述表格说明可知，tmux使用`三层`模型(session/window/panel)来支持多窗口多终端复用。
 
 ### 高效使用tmux场景分析
 
 - 1个`tmux`是由1个或多个`session`会话组成; 
 - 1个`session`是由1个或多个`window`窗口组成; 
-- 1个`window`是由1个或多个`pane`面板组成; 
+- 1个`window`是由1个或多个`panel`面板组成; 
 
 `session`用来隔离不同的应用环境，例如用`tmux new -s workbench` 和 `tmux new -s homebench` 来隔离工作环境和娱乐环境。
 
 在一个`session`下比如要打开不同的项目进行工作，则可以开启多个`window`来隔离不同项目环境。比如进入`window1`就能专心工作`proj1`。
 
-在一个`window`中如果需要同时查看项目的多个文件，则可以开启多个`pane`，使得打开的多个文件同时在一个屏上显示出来方便查看对比。
+在一个`window`中如果需要同时查看项目的多个文件，则可以开启多个`panel`，使得打开的多个文件同时在一个屏上显示出来方便查看对比。
 
 >下文中ctrl-b为 tmux 的热键默认是ctrl-b
 
