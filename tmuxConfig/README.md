@@ -16,9 +16,9 @@
 
 ### 高效使用tmux场景分析
 
-** 1个`tmux`是由1个或多个`session`会话组成; **
-** 1个`session`是由1个或多个`window`窗口组成; **
-** 1个`window`是由1个或多个`pane`面板组成; **
+- 1个`tmux`是由1个或多个`session`会话组成; 
+- 1个`session`是由1个或多个`window`窗口组成; 
+- 1个`window`是由1个或多个`pane`面板组成; 
 
 `session`用来隔离不同的应用环境，例如用`tmux new -s workbench` 和 `tmux new -s homebench` 来隔离工作环境和娱乐环境。
 
