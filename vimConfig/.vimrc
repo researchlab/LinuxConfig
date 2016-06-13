@@ -37,7 +37,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'fatih/vim-go'
 
 " tagbar 与 gotags  配合使用
-"Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 
 " neocomplete 实时提示-golang
 Plugin 'shougo/neocomplete.vim'
@@ -59,6 +59,9 @@ Plugin 'scrooloose/nerdtree'
 
 " NERDTree-git-plugin 
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+" HTML 补全
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 
