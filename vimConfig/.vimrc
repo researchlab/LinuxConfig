@@ -15,6 +15,21 @@ Plugin 'gmarik/Vundle.vim'
 " Solarized 配色
 Plugin 'altercation/vim-colors-solarized'
 
+Plugin 'morhetz/gruvbox'
+set background=dark
+colorscheme gruvbox
+
+" Git commands
+Plugin 'tpope/vim-fugitive'
+
+
+" Git status
+Plugin 'airblade/vim-gitgutter'
+let g:gitgutter_override_sign_column_highlight = 1
+let g:gitgutter_highlight_lines = 1
+let g:gitgutter_signs = 1
+let g:gitgutter_enabled = 1
+
 " tag 高亮
 Plugin 'vim-scripts/TagHighlight'
 
@@ -226,6 +241,10 @@ set cindent
 " Tab & Indent End
 """""""""""""""""""""""""""""""""""""""""""""""""
 
+" 设置折叠
+set foldmethod=indent
+" 关闭打开文件时折叠， 打开之后可用zc全部折叠
+set nofoldenable
 " 增量搜索
 set incsearch
 
@@ -312,7 +331,7 @@ let g:airline_symbols.whitespace = '='
 syntax enable
 let g:solarized_termcolors=256
 "colorscheme solarized
-colorscheme peachpuff
+" colorscheme peachpuff
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Solarized Configuration End

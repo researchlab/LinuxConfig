@@ -29,3 +29,6 @@
 * NERDTree 目录 - `Ctrl + n` 触发
 * NERDTree-git-plugin
 * emmet html自动补全(前身为zencoding)
+* 支持Git Commands (vim-fugitive)
+* 支持Git status (vim-gitgutter)
+* 支持yaml文件折叠， 打开之后可用zc全部折叠
