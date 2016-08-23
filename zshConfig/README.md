@@ -8,6 +8,7 @@ $ git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/z
 $ plugins=(zsh-autosuggestions)
 ```
 #### configuration zsh-autosuggestions ( keys maping )
+
 Ctrl+a 接受建议: bindkey '^a' autosuggest-accept  
 Ctrl+e 直接执行: bindkey '^e' autosuggest-execute
 Ctrl+q 取消建议: bindkey '^q' autosuggest-clear
