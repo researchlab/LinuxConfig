@@ -24,17 +24,17 @@ Plugin 'tpope/vim-fugitive'
 
 
 " Git status
-Plugin 'airblade/vim-gitgutter'
-let g:gitgutter_override_sign_column_highlight = 1
-let g:gitgutter_highlight_lines = 1
-let g:gitgutter_signs = 1
-let g:gitgutter_enabled = 1
+"Plugin 'airblade/vim-gitgutter'
+"let g:gitgutter_override_sign_column_highlight = 1
+"let g:gitgutter_highlight_lines = 1
+"let g:gitgutter_signs = 1
+"let g:gitgutter_enabled = 1
 
 " tag 高亮
 Plugin 'vim-scripts/TagHighlight'
 
 " 配合 ctags
-Plugin 'vim-scripts/taglist.vim'
+"Plugin 'vim-scripts/taglist.vim'
 
 " Doxygen注释
 Plugin 'vim-scripts/DoxygenToolkit.vim'
@@ -78,6 +78,9 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 " HTML 补全
 Plugin 'mattn/emmet-vim'
 
+" minibufExplorer
+Plugin 'fholgado/minibufexpl.vim'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -95,10 +98,24 @@ filetype plugin indent on
 " python format Configuration End
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MiniBufExplorer Configuration Begin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:miniBufExplMapCTabSwitchBufs=1
+let g:miniBufExplModSelTarget=1
+let g:miniBufExplMoreThanOne=0
+
+map <F6> :MBEbp<CR>
+map <F7> :MBEbn<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MiniBufExplorer Configuration End
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Configuration Begin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tagbar_width=30 "窗口宽度设置
 let g:tagbar_type_go = {
 	\ 'ctagstype' : 'go',
 	\ 'kinds' : [
@@ -128,6 +145,7 @@ let g:tagbar_type_go = {
 \ }
 
 nmap <F8> :TagbarToggle <CR>
+autocmd BufReadPost *.go call tagbar#autoopen()  "如果是golang 文件， 则tagbar自动开启
 
 "启动vim时自动开启实时补全功能
 let g:neocomplete#enable_at_startup = 1 
