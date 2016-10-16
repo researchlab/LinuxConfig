@@ -32,3 +32,4 @@
 * 支持Git Commands (vim-fugitive)
 * 支持Git status (vim-gitgutter)
 * 支持yaml文件折叠， 打开之后可用zc全部折叠
+* 支持MiniBufExplorer -  `F6`, `F7` 分别向前或向后跳一个Buffer, 如果要关闭某个buffer的话，可以使用命令:MBEbd [num]，如果只是输入:MBEbd是关闭当前buffer，如果后面跟有buffer的数字标号，则关闭指定的buffer。
