@@ -34,10 +34,10 @@
 * 支持yaml文件折叠， 打开之后可用zc全部折叠
 * 支持MiniBufExplorer -  `F6`, `F7` 分别向前或向后跳一个Buffer, 也可以用`bp`,`bl` 来前后跳一个Buffer, 如果要关闭某个buffer的话，可以使用命令:MBEbd [num]，如果只是输入:MBEbd是关闭当前buffer，如果后面跟有buffer的数字标号，则关闭指定的buffer。
   - 常用的命令
-		- :e <filename> 打开文件
+		- :e filename 打开文件
 		- :ls    当前打开的buf
 		- :bn    下一个buf
 		- :bp    前一个buf
-		- :b<n>    n是数字，第n个buf
-		- :b<tab>    自动补齐
+		- :b n    n是数字，第n个buf
+		- :b tab    自动补齐
 		- :bd    删除buf
