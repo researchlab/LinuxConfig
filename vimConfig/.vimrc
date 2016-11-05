@@ -176,6 +176,9 @@ set background=dark
 " 突出显示当前行
 set cursorline              
 
+" 突出显示当前列
+set cursorcolumn 
+
 " 打开状态栏标尺
 set ruler 
 
