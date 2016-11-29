@@ -41,3 +41,4 @@
 		- :b n    n是数字，第n个buf
 		- :b tab    自动补齐
 		- :bd    删除buf
+* 支持php code 保存时自动format (手动命令:\pcf) 需要额外安装:[php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
