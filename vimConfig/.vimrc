@@ -12,12 +12,11 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-" Solarized 配色
-Plugin 'altercation/vim-colors-solarized'
+"Solarized 配色
+"Plugin 'altercation/vim-colors-solarized'
 
+" 设置gruvbox 配色
 Plugin 'morhetz/gruvbox'
-set background=dark
-colorscheme gruvbox
 
 " Git commands
 Plugin 'tpope/vim-fugitive'
@@ -91,6 +90,16 @@ filetype plugin indent on
 " Vundle Configuration End
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set gruvbox color Configuration Begin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set background=dark
+colorscheme gruvbox
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set gruvbox color Configuration End 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python format Configuration Begin
