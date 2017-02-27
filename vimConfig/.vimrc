@@ -51,6 +51,9 @@ Plugin 'scrooloose/nerdcommenter'
 " golang vim-go
 Plugin 'fatih/vim-go'
 
+" syntastic
+Plugin 'vim-syntastic/syntastic'
+
 " tagbar 与 gotags  配合使用
 Plugin 'majutsushi/tagbar'
 
@@ -81,8 +84,20 @@ Plugin 'mattn/emmet-vim'
 " minibufExplorer
 Plugin 'fholgado/minibufexpl.vim'
 
-" php code 格式化
-Plugin 'stephpy/vim-php-cs-fixer'
+" php code 格式化(vim-php-cs-fixer, vim-phpfmt 都没有效果)
+"Plugin 'stephpy/vim-php-cs-fixer'
+"Plugin 'beanworks/vim-phpfmt'
+
+"task
+Plugin 'farseer90718/vim-taskwarrior'
+
+"vim-multiple-cursors
+"Plugin 'terryma/vim-multiple-cursors'
+
+"youcompleteMe
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'jiangmiao/auto-pairs'
+Plugin 'tell-k/vim-autopep8'
 call vundle#end()
 
 filetype plugin indent on
@@ -91,11 +106,58 @@ filetype plugin indent on
 " Vundle Configuration End
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" taskwarrior Configuration Begin 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" default task report type
+let g:task_report_name     = 'next'
+" custom reports have to be listed explicitly to make them available
+let g:task_report_command  = []
+" whether the field under the cursor is highlighted
+let g:task_highlight_field = 1
+" can not make change to task data when set to 1
+let g:task_readonly        = 0
+" vim built-in term for task undo in gvim
+let g:task_gui_term        = 1
+" allows user to override task configurations. Seperated by space. Defaults
+to ''
+let g:task_rc_override     = 'rc.defaultwidth=999'
+" default fields to ask when adding a new task
+let g:task_default_prompt  = ['due', 'description']
+" whether the info window is splited vertically
+let g:task_info_vsplit     = 0
+" info window size
+let g:task_info_size       = 15
+" info window position
+let g:task_info_position   = 'belowright'
+" directory to store log files defaults to taskwarrior data.location
+let g:task_log_directory   = '~/.task'
+" max number of historical entries
+let g:task_log_max         = '20'
+" forward arrow shown on statusline
+let g:task_left_arrow      = ' <<'
+" backward arrow ...
+let g:task_left_arrow      = '>> '
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" taskwarrior Configuration End 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python format Configuration Begin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+au BufNewFile, BufRead *.py
+			\ set tabstop=4
+			\ set softtabstop=4
+			\ set shiftwidth=4
+			\ set textwidth=79
+			\ set expandtab
+			\ set autoindent
+			\ set fileformat=unix
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python format Configuration End
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -115,8 +177,25 @@ map <F7> :MBEbn<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Go Configuration Begin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd BufReadPost *.go call tagbar#autoopen()  "如果是golang 文件， 则tagbar自动开启
+let g:go_fmt_command = "goimports"
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Go Configuration End 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Configuration Begin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let g:tagbar_width=30 "窗口宽度设置
 let g:tagbar_type_go = {
 	\ 'ctagstype' : 'go',
@@ -147,7 +226,6 @@ let g:tagbar_type_go = {
 \ }
 
 nmap <F8> :TagbarToggle <CR>
-autocmd BufReadPost *.go call tagbar#autoopen()  "如果是golang 文件， 则tagbar自动开启
 
 "启动vim时自动开启实时补全功能
 let g:neocomplete#enable_at_startup = 1 
@@ -159,6 +237,8 @@ let g:vim_markdown_folding_disabled = 1
 set ts=2
 " Display Begin
 """""""""""""""""""""""""""""""""""""""""""""""""
+"标示不必要的空白字符
+au BufRead, BufNewFile *.py, *.pyw, *.c, *.h match BadWhitespace /\s\+$/
 
 " 字体
 set guifont=Consolas:11
@@ -192,6 +272,10 @@ set helplang=cn
 
 " Tabular maping
 map <s-=> Tab/=
+
+"Wrap lines 
+set wrap
+
 "
 " Display End
 """""""""""""""""""""""""""""""""""""""""""""""""
@@ -200,7 +284,7 @@ map <s-=> Tab/=
 """""""""""""""""""""""""""""""""""""""""""""""""
 
 " If php-cs-fixer is in $PATH, you don't need to define line below
-let g:php_cs_fixer_path = "usr/local/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
+"let g:php_cs_fixer_path = "usr/local/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
 " let g:php_cs_fixer_level = "symfony"              " which level ?
 " let g:php_cs_fixer_config = "default"             " configuration
 " let g:php_cs_fixer_config_file = '.php_cs'       " configuration file
@@ -213,7 +297,11 @@ let g:php_cs_fixer_path = "usr/local/bin/php-cs-fixer" " define the path to the 
 " dry-run option
 " let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 
-autocmd BufWritePost *.php :call PhpCsFixerFixFile()
+"autocmd BufWritePost *.php :call PhpCsFixerFixFile()
+" A standard type: PEAR, PHPCS, PSR1, PSR2, Squiz and Zend
+let g:phpfmt_standard = 'PSR2'
+" Or your own defined source of standard (absolute or relative path):
+" let g:phpfmt_standard = '/path/to/custom/standard.xml'
 """""""""""""""""""""""""""""""""""""""""""""""""
 " PHP Code Format End
 "
@@ -496,3 +584,6 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文件头注释设置 End
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"autoload _vimrc
+autocmd! BufWritePost _vimrc source %
