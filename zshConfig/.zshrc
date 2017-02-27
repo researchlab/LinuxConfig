@@ -66,14 +66,25 @@ bindkey '^q' autosuggest-clear
 
 # GO Env
  export GOROOT="/usr/local/go"
- #export GOPATH="/home/lihong/go_proj"
- #export GOPATH="/home/lihong/hiproapi-test"
- #export GOPATH="/home/lihong/ledisdb_wsp"
- export GOPATH="/home/lihong/hiproapi-all-test"
- #export GOPATH="/home/lihong/work_go"
- #export GOPATH="/home/lihong/eticket-req"
- #export GOPATH="/home/lihong/workbench/eticket-api"
- export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+ export GOTOOLBin="/usr/local/gotoolbin"
+ export GOPATH="/home/lihong/go_proj"
+ export DEF_GOPATH=~/go_proj
+ 
+ export PATH=$GOTOOLBin:$GOROOT/bin:$GOPATH/bin:$PATH
+
+gop() {
+    if [ "$1" = "" ]; then
+    elif [ "$1" = "d" ]; then
+        export GOPATH=`echo $DEF_GOPATH`
+    elif [ "$1"  = "a" ]; then
+        export GOPATH=`echo $DEF_GOPATH`:`pwd`
+    elif [ "$1" = "f" ];then
+        export GOPATH=`pwd`
+    fi
+
+    echo "currnet GOPATH = "$GOPATH
+}
+
 
 # autojump Env
 [[ -s /usr/share/autojump/autojump.zsh ]] && . /usr/share/autojump/autojump.zsh
@@ -104,3 +115,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias open=xdg-open
+alias rm="sh /usr/local/myscripts/remove.sh"
+
+#export HTTP_PROXY=http://10.64.144.3:8123 HTTPS_PROXY=http://10.64.144.3:8123
