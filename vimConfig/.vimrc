@@ -13,11 +13,10 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Solarized 配色
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
 
+" 设置gruvbox 配色
 Plugin 'morhetz/gruvbox'
-set background=dark
-colorscheme gruvbox
 
 " Git commands
 Plugin 'tpope/vim-fugitive'
@@ -107,9 +106,21 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" taskwarrior Configuration Begin 
+" set gruvbox color Configuration Begin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set background=dark
+colorscheme gruvbox
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set gruvbox color Configuration End 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" taskwarrior Configuration Begin 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " default task report type
 let g:task_report_name     = 'next'
