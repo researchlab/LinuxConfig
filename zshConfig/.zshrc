@@ -1,12 +1,13 @@
 # Path to your oh-my-zsh installation.
-#export ZSH=/home/lihong/.oh-my-zsh
-export ZSH=/Users/lihong/.oh-my-zsh
+  export ZSH=/Users/lihong/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="awesomepanda"
+#ZSH_THEME="af-magic"
+#ZSH_THEME="robbyrussell"
 #ZSH_THEME="nebirhos"
 #ZSH_THEME="honukai"
 
@@ -67,11 +68,14 @@ bindkey '^q' autosuggest-clear
 
 # GO Env
  export GOROOT="/usr/local/go"
- export GOTOOLBin="/usr/local/gotoolbin"
- export GOPATH="/home/lihong/go_proj"
- export DEF_GOPATH=~/go_proj
- 
- export PATH=$GOTOOLBin:$GOROOT/bin:$GOPATH/bin:$PATH
+ export GOTOOL="/usr/local/gotool"
+ export GOPATH="/Users/lihong/workbench/dev"
+ export DEF_GOPATH=~/workbench/dev
+
+# MySQL Env 
+ export MYSQLROOT="/usr/local/mysql"
+
+ export PATH=$MYSQLROOT/bin:$GOTOOL:$GOROOT/bin:$GOPATH/bin:$PATH
 
 gop() {
     if [ "$1" = "" ]; then
@@ -115,7 +119,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias open=xdg-open
-alias rm="sh /usr/local/myscripts/remove.sh"
+#alias open=xdg-open
+alias rm="zsh /usr/local/opt/myscripts/remove.sh"
+alias hp="http_proxy=http://localhost:8123 https_proxy=http://localhost:8123"
 
-#export HTTP_PROXY=http://10.64.144.3:8123 HTTPS_PROXY=http://10.64.144.3:8123
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
