@@ -42,3 +42,4 @@
 		- :b tab    自动补齐
 		- :bd    删除buf
 * 支持php code 保存时自动format (手动命令:\pcf) 需要额外安装:[php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
+* 支持json文件保存时自动格式化(调用python 的json.tool工具命令格式化的结果）
