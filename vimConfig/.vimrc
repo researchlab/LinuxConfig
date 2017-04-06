@@ -191,8 +191,8 @@ map <F7> :MBEbn<CR>
 " Go Configuration Begin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-autocmd BufReadPost *.go call tagbar#autoopen()  "如果是golang 文件， 则tagbar自动开启
-let g:go_fmt_command = "goimports"
+"autocmd BufReadPost *.go call tagbar#autoopen()  "如果是golang 文件， 则tagbar自动开启
+"let g:go_fmt_command = "goimports"
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
@@ -237,7 +237,6 @@ let g:tagbar_type_go = {
 \ }
 
 nmap <F8> :TagbarToggle <CR>
-
 "启动vim时自动开启实时补全功能
 let g:neocomplete#enable_at_startup = 1 
 
@@ -316,7 +315,11 @@ let g:phpfmt_standard = 'PSR2'
 """""""""""""""""""""""""""""""""""""""""""""""""
 " PHP Code Format End
 "
-
+"
+" Ali: to indent json files on save
+"""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
+"""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " NERDTree Start 
 """""""""""""""""""""""""""""""""""""""""""""""""
