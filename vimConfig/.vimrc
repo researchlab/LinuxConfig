@@ -195,7 +195,7 @@ map <F7> :MBEbn<CR>
 "let g:go_fmt_command = "goimports"
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-
+let g:go_template_autocreate = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go Configuration End 
@@ -318,7 +318,7 @@ let g:phpfmt_standard = 'PSR2'
 "
 " Ali: to indent json files on save
 """""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
+"autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
 """""""""""""""""""""""""""""""""""""""""""""""""
 "
 " NERDTree Start 
@@ -368,11 +368,11 @@ let g:mkdp_path_to_firefox = "firefox"
 """""""""""""""""""""""""""""""""""""""""""""""""
 
 " Tab键的宽度
-set tabstop=4
+set tabstop=2
 
 " 统一缩进为4
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 
 " 不要用空格代替制表符
 set noexpandtab
