@@ -9,10 +9,21 @@ filetype off
 "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
+"Plugin 'airblade/vim-rooter'
+Plugin 'junegunn/fzf'
 Plugin 'gmarik/Vundle.vim'
-
-" Solarized 配色
+Plugin 'hashivim/vim-terraform'
+Plugin 'beautify-web/js-beautify'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'junegunn/vim-xmark', { 'do': 'make' }
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+" vim-jsx-typescript
+Plugin 'leafgarland/typescript-vim'
+Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'peitalin/vim-jsx-typescript'
+"Solarized 配色
 "Plugin 'altercation/vim-colors-solarized'
 
 " 设置gruvbox 配色
@@ -21,7 +32,8 @@ Plugin 'morhetz/gruvbox'
 " Git commands
 Plugin 'tpope/vim-fugitive'
 
-
+" Dash
+Plugin 'rizzatti/dash.vim'
 " Git status
 "Plugin 'airblade/vim-gitgutter'
 "let g:gitgutter_override_sign_column_highlight = 1
@@ -36,10 +48,10 @@ Plugin 'vim-scripts/TagHighlight'
 "Plugin 'vim-scripts/taglist.vim'
 
 " Doxygen注释
-Plugin 'vim-scripts/DoxygenToolkit.vim'
+"Plugin 'vim-scripts/DoxygenToolkit.vim'
 
 " Python 自动补全
-Plugin 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
 
 " 状态栏
 Plugin 'bling/vim-airline'
@@ -51,13 +63,10 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'fatih/vim-go'
 
 " syntastic
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 
 " tagbar 与 gotags  配合使用
 Plugin 'majutsushi/tagbar'
-
-" neocomplete 实时提示-golang
-Plugin 'shougo/neocomplete.vim'
 
 " gocode 代码自动补全功能
 Plugin 'Blackrush/vim-gocode'
@@ -69,16 +78,13 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
 " markdown preview"
-Plugin 'iamcco/markdown-preview.vim'
+"Plugin 'iamcco/markdown-preview.vim'
 
 " NERDTree 
 Plugin 'scrooloose/nerdtree'
 
 " NERDTree-git-plugin 
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-" HTML 补全
-Plugin 'mattn/emmet-vim'
 
 " minibufExplorer
 Plugin 'fholgado/minibufexpl.vim'
@@ -95,8 +101,22 @@ Plugin 'farseer90718/vim-taskwarrior'
 
 "youcompleteMe
 Plugin 'Valloric/YouCompleteMe'
-"Plugin 'jiangmiao/auto-pairs'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'tell-k/vim-autopep8'
+
+"Plugin 'Yggdroot/indentLine'
+"
+"node.js
+"Plugin 'moll/vim-node'
+"html css
+Plugin 'mattn/emmet-vim'
+Plugin 'easymotion/vim-easymotion'
+" Track the engine.
+"Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+Plugin 'junegunn/vim-easy-align'
 call vundle#end()
 
 filetype plugin indent on
@@ -104,6 +124,79 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle Configuration End
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Ack config start 
+"高亮搜索关键词
+let g:ackhighlight = 1
+"修改快速预览窗口高度为15
+let g:ack_qhandler = "botright copen 15"
+"在QuickFix窗口使用快捷键以后，自动关闭QuickFix窗口
+let g:ack_autoclose = 1
+" 搜索完后不自动跳到第一个结果文件
+"cnoreabbrev Ack Ack!
+" 设置搜索快捷键为<leader> + a
+"nnoremap <Leader>a :Ack!<Space>
+" ack的选项设置
+let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case --follow"
+" 如果不输入任何搜索参数，则默认以光标下的单词为搜索条件，并把它映射到<leader> + s上
+"nnoremap <leader>s :Ack!<CR>
+" ACK config  end 
+
+" set filetypes as typescriptreact 
+autocmd BufNewFile,BufRead *.ts,*.js,*.tsx,*.jsx set filetype=typescriptreact
+"
+" 运行时路径
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+" 敲击<leader>+p键，进入搜索模式，这里为目录、MRU的混合模式
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" 根据通配符来忽略不需要搜索的文件
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
+" 本地工作目录的规则，可设置以下选项
+" 'c' - 设为当前文件所在的目录
+" 'r' - 如果最近的祖先有包含以下目录，则将该祖先目录设为工作目录：.git .hg .svn .bzr _darcs,
+" 'a' - 和c选项类似，理解为仅在r不生效的情况下，才执行c选项
+let g:ctrlp_working_path_mode = 'ra'
+" 哪些文件、目录、链接不在搜索范围内
+let g:ctrlp_custom_ignore = {
+         \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+         \ 'file': '\v\.(exe|so|dll)$',
+         \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+         \ }
+
+let g:ycm_server_python_interpreter='/usr/bin/python'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+" 让vim的补全菜单行为与一般IDE一致
+set completeopt=longest,menu
+" 触发(符号)补全时需要键入的字符数
+let g:ycm_min_num_of_chars_for_completion = 1
+" 补全候选项的最小字符数
+let g:ycm_min_num_identifier_candidate_chars = 0
+" 关闭诊断显示功能(已经使用了ale进行异步语法检查)
+let g:ycm_show_diagnostics_ui = 0
+" 在字符串和注释中仍会触发补全
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+" 禁止缓存匹配项，每次重新生成匹配项
+let g:ycm_cache_omnifunc = 0
+" 在用户接受提供的完成字符串后自动关闭窗口
+let g:ycm_autoclose_preview_window_after_completion = 0
+" 跳转到声明或定义处
+nnoremap <silent><leader>gj :YcmCompleter GoToDefinitionElseDeclaration<cr>
+
+" 自动触发语义补全
+"let g:ycm_semantic_triggers =  {
+"            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{1}'],
+"            \ 'cs,lua,javascript': ['re!\w{1}'],
+"            \ }
+"" 遇到下列文件时才会开启YCM
+"let g:ycm_filetype_whitelist = {
+"            \ "c":1,
+"            \ "cpp":1,
+"            \ "python":1,
+"            \ "go":1, 
+"						\ "sh":1,
+"            \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set gruvbox color Configuration Begin
@@ -116,7 +209,7 @@ colorscheme gruvbox
 " set gruvbox color Configuration End 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+set helplang=cn
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " taskwarrior Configuration Begin 
@@ -156,23 +249,49 @@ let g:task_left_arrow      = '>> '
 " taskwarrior Configuration End 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" EasyMotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
 
+" enable vim-easy-align-plugin
+nmap ga <Plug>(EasyAlign)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+"UltiSnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python format Configuration Begin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufNewFile, BufRead *.py
-			\ set tabstop=4
-			\ set softtabstop=4
-			\ set shiftwidth=4
-			\ set textwidth=79
-			\ set expandtab
-			\ set autoindent
-			\ set fileformat=unix
+"au BufNewFile, BufRead *.py
+"			\ set tabstop=4
+"			\ set softtabstop=4
+"			\ set shiftwidth=4
+"			\ set textwidth=79
+"			\ set expandtab
+"			\ set autoindent
+"			\ set fileformat=unix
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python format Configuration End
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MiniBufExplorer Configuration Begin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -192,8 +311,8 @@ map <F7> :MBEbn<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "autocmd BufReadPost *.go call tagbar#autoopen()  "如果是golang 文件， 则tagbar自动开启
-"let g:go_fmt_command = "goimports"
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:go_fmt_command = "goimports"
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck', 'gometalinter']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_template_autocreate = 0
 
@@ -261,7 +380,7 @@ syntax on
 
 " 行号
 set number
-
+set relativenumber
 " 背景
 set background=dark
 
@@ -286,6 +405,9 @@ map <s-=> Tab/=
 "Wrap lines 
 set wrap
 
+"let g:indentLine_char = "|"
+"let g:indentLine_enabled = 1
+"let g:autopep8_disable_show_diff = 1
 "
 " Display End
 """""""""""""""""""""""""""""""""""""""""""""""""
@@ -319,6 +441,7 @@ let g:phpfmt_standard = 'PSR2'
 " Ali: to indent json files on save
 """""""""""""""""""""""""""""""""""""""""""""""""
 "autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
+au BufNewFile,BufRead *.conf set filetype=json
 """""""""""""""""""""""""""""""""""""""""""""""""
 "
 " NERDTree Start 
@@ -337,9 +460,11 @@ map <C-n> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree End
 "
+" auto js/html/css
+autocmd FileType javascript setlocal equalprg=js-beautify\ -f\ -\ -s\ 2\ -B  
+autocmd FileType html setlocal equalprg=html-beautify\ -f\ -\ -s\ 2\ -B  
+autocmd FileType css setlocal equalprg=css-beautify\ -f\ -\ -s\ 2\ -B  
 
-
-"
 " NERDTree-git-plugin Start 
 """""""""""""""""""""""""""""""""""""""""""""""""
 let g:NERDTreeIndicatorMapCustom = {
@@ -600,4 +725,20 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "autoload _vimrc
-autocmd! BufWritePost _vimrc source %
+"autocmd! BufWritePost _vimrc source %
+if has('python3')
+  silent! python3 1
+endif
+"to fix E523: Not allowed here.
+set completeopt-=preview
+""""""""""""""""""""""""""""""""
+
+set rtp+=/usr/local/opt/fzf
+
+" 按照PEP8标准来配置vim
+au BufNewFile,BufRead *.py set tabstop=4 |set softtabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
+" Disable show diff window
+let g:autopep8_disable_show_diff=1
+
+" vim-autopep8自1.11版本之后取消了F8快捷键，需要用户自己为:Autopep8设置快捷键：
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
