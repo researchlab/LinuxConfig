@@ -1,0 +1,168 @@
+"===============quickstart 
+"fn+F2：代码提示
+"Ctrl +n：开启关闭NERDTree（也可以:NERDTree）
+"fn+F4：右侧展示文件结构
+"Ctrl + ]/o：代码追踪/回退
+"golang 代码，按下g 再按下d 键 可以追踪代码， 然后ctrl+o 可以回退代码
+"=========================
+
+colorscheme molokai
+ 
+"molokai设置
+set t_Co=256
+let g:molokai_original = 1 
+let g:rehash256 = 1 
+"代码颜色区分
+syntax enable
+syntax on
+ 
+"tab宽度和缩进设置
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+"兼容老版本
+set nocompatible
+set backspace=indent,eol,start
+"自动缩紧和对齐
+set autoindent
+set smartindent
+ 
+"开启追踪列表选择
+set cscopetag
+set hlsearch
+"默认显示行号
+set number
+
+" 突出显示当前行
+set cursorline
+
+" 突出显示当前列
+set cursorcolumn
+
+" 打开状态栏标尺
+set ruler
+
+"自动加载和保存折叠
+"au BufWinLeave * silent mkview
+"au BufWinEnter * silent loadview
+"括号和引号自动补全
+"inoremap ' ''<ESC>i
+"inoremap " ""<ESC>i
+"inoremap ( ()<ESC>i
+"inoremap [ []<ESC>i
+"inoremap { {}<ESC>i
+"GoLang代码提示
+imap <F2> <C-x><C-o>
+"开启NerdTree
+" 当单独打开vim时 自动打开 NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" 当只有NERDTree窗口时 自动关闭vim
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" NERDTree 快捷键 <C-n> 表示 Ctrl + n
+map <C-n> :NERDTreeToggle<CR>
+"autocmd VimEnter * NERDTree
+let NERDTreeWinSize=30
+"文件结构显示
+nmap <F8> :TagbarToggle<CR>
+"let g:tagbar_autopreview = 1 "开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口 
+let g:tagbar_sort = 0 "关闭排序,即按标签本身在文件中的位置排序
+let g:tagbar_left = 1 "默认在右边，设置在左边
+let g:tagbar_width = 30 "宽度
+let g:tagbar_type_go = { 
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [ 
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : { 
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : { 
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+"go函数追踪 ctrl+] 或 gd 追踪 ctrl+o返回
+autocmd FileType go nnoremap <buffer> gd :call GodefUnderCursor()<cr>
+autocmd FileType go nnoremap <buffer> <C-]> :call GodefUnderCursor()<cr>
+let g:godef_split=3    "追踪打开新tab
+let g:godef_same_file_in_same_window=1    "函数在同一个文件中时不需要打开新窗口
+"保存自动goimports
+let g:go_fmt_command = "goimports"
+let g:goimports = 1
+
+
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.ts,*.js,*.tsx,*.jsx set filetype=typescriptreact
+"标示不必要的空白字符
+au BufRead, BufNewFile *.py, *.pyw, *.c, *.h match BadWhitespace /\s\+$/
+
+" auto js/html/css
+autocmd FileType javascript setlocal equalprg=js-beautify\ -f\ -\ -s\ 2\ -B
+autocmd FileType html setlocal equalprg=html-beautify\ -f\ -\ -s\ 2\ -B
+autocmd FileType css setlocal equalprg=css-beautify\ -f\ -\ -s\ 2\ -B
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline Configuration Begin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 总是显示状态栏
+set laststatus=2
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '>'
+let g:airline_left_sep = '>'
+let g:airline_right_sep = '<'
+let g:airline_right_sep = '<'
+let g:airline_symbols.linenr = '|'
+let g:airline_symbols.branch = '$'
+let g:airline_symbols.paste = 'p'
+let g:airline_symbols.whitespace = '='
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline Configuration End
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'fatih/vim-go'
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+" js html css 
+Plugin 'beautify-web/js-beautify'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'mattn/emmet-vim'
+" 状态栏
+Plugin 'bling/vim-airline'
+call vundle#end()
+filetype plugin indent on
